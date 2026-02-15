@@ -1,8 +1,7 @@
-from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
 from core.database import Base
-from sqlalchemy import ForeignKey
+from sqlalchemy import DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 if TYPE_CHECKING:
@@ -17,8 +16,12 @@ class Equipment(Base):
     type: Mapped["EquipmentType"] = relationship("EquipmentType")
     type_id: Mapped[int] = mapped_column(ForeignKey("equipment_types.id"))
     serial_number: Mapped[str] = mapped_column(nullable=False, unique=True)
-    purchase_date: Mapped[datetime] = mapped_column(nullable=False)
-    last_maintenance_date: Mapped[datetime] = mapped_column(nullable=False)
+    purchase_date: Mapped[DateTime] = mapped_column(
+        DateTime(timezone=True), nullable=False
+    )
+    last_maintenance_date: Mapped[DateTime] = mapped_column(
+        DateTime(timezone=True), nullable=False
+    )
     is_operational: Mapped[bool] = mapped_column(nullable=False, default=True)
     assigned_employee_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("employees.id"), nullable=True

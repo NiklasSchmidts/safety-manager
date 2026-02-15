@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
 import models  # noqa: F401
+from api.v1.employee import create_employee_router
 from core.config import settings
 from core.database import Base, engine
 from fastapi import FastAPI
@@ -23,6 +24,10 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.include_router(
+    create_employee_router(), prefix="/api/v1/employees", tags=["Employees"]
+)
 
 
 @app.get("/health")
