@@ -31,6 +31,47 @@ The **SafetyGear Manager** solves the "Who has what?" problem by tracking equipm
 
 ---
 
+## 📐 Architecture Overview
+The application follows a clean architecture with clear separation of concerns:
+- **Models**: SQLAlchemy models representing database tables.
+- **Schemas**: Pydantic models for request/response validation.
+- **CRUD Operations**: Encapsulated in a dedicated module for database interactions.
+- **API Routes**: Organized by resource (e.g., `/equipment`, `/employees`).
+- **Configuration**: Centralized settings management using Pydantic.
+
+---
+
+## Folder Structure
+
+safetygear-manager/
+├── Dockerfile
+├── README.md
+├── app
+│   ├── __init__.py
+│   ├── api
+│   │   └── v1
+│   │       └── employee.py
+│   ├── app_factory.py
+│   ├── core
+│   │   ├── config.py
+│   │   └── database.py
+│   ├── crud
+│   ├── main.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── employee.py
+│   │   └── equipment.py
+│   ├── schemas
+│   └── server.py
+├── docker-compose.yml
+├── pyproject.toml
+├── setup.sh
+├── startlocal.sh
+├── tests
+└── uv.lock
+
+---
+
 ## 📦 Getting Started
 
 ### Prerequisites

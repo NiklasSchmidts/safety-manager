@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: ${POSTGRES_DB:-mydatabase}
+      POSTGRES_DB: ${POSTGRES_DB:-safety_db}
     restart: always
     ports:
       - "5432:5432"
