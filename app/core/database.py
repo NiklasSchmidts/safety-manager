@@ -1,6 +1,6 @@
 from typing import AsyncGenerator
 
-from core.config import settings
+from core.config import database_settings, settings
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import DeclarativeBase
 
 engine: AsyncEngine = create_async_engine(
-    settings.CONNECTION_STRING, echo=settings.is_local
+    database_settings.CONNECTION_STRING, echo=settings.is_local
 )
 
 session_factory = async_sessionmaker(
